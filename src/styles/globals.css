@@ -1,0 +1,273 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Self-Hosted Licensed Font Faces */
+@font-face {
+  font-family: "LexendLocal";
+  src: url("/fonts/lexend-latin.woff2") format("woff2");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CairoArabicLocal";
+  src: url("/fonts/Cairo-Arabic-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CairoArabicLocal";
+  src: url("/fonts/Cairo-Arabic-600.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CairoArabicLocal";
+  src: url("/fonts/Cairo-Arabic-700.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* Primitive Tokens */
+  --nx-primitive-turquoise: #00D1B4;
+  --nx-primitive-teal-deep: #00796B;
+  --nx-primitive-teal-hover: #005B4F;
+  --nx-primitive-dark-950: #0D1111;
+  --nx-primitive-dark-900: #141C1B;
+  --nx-primitive-light-100: #F5F8F7;
+  --nx-primitive-white: #FFFFFF;
+  --nx-primitive-ink-900: #0D1111;
+  --nx-primitive-ink-600: #4A5A58;
+  --nx-primitive-border-light: #D6E2DF;
+  --nx-primitive-border-dark: rgba(0, 209, 180, 0.22);
+
+  /* Semantic & Component Tokens */
+  --nx-bg-dark: var(--nx-primitive-dark-950);
+  --nx-bg-dark-elevated: var(--nx-primitive-dark-900);
+  --nx-bg-light: var(--nx-primitive-light-100);
+  --nx-bg-surface: var(--nx-primitive-white);
+  --nx-text-primary: var(--nx-primitive-ink-900);
+  --nx-text-muted: var(--nx-primitive-ink-600);
+  --nx-text-on-dark: var(--nx-primitive-white);
+  --nx-accent-on-dark: var(--nx-primitive-turquoise);
+  --nx-accent-on-light: var(--nx-primitive-teal-deep);
+  --nx-border-subtle: var(--nx-primitive-border-light);
+  --nx-focus-ring: #00D1B4;
+  --nx-status-success: #00796B;
+  --nx-status-warning: #B45309;
+  --nx-status-error: #B91C1C;
+  --nx-disabled-bg: #E2E8E6;
+  --nx-disabled-text: #7A8B88;
+
+  /* Backward-compatible aliases */
+  --nx-forest-black: #0D1111;
+  --nx-deep-evergreen: #141C1B;
+  --nx-living-emerald: #00D1B4;
+  --nx-profile-teal: #00D1B4;
+  --nx-botanical-green: #8CE6D8;
+  --nx-warm-ivory: #F5F8F7;
+  --nx-slate-ink: #0D1111;
+  --nx-muted-ink: #4A5A58;
+  --nx-soft-mist: #D6E2DF;
+  --nx-pure-white: #FFFFFF;
+  --nx-emerald-ink: #00796B;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--nx-bg-dark);
+    color: var(--nx-text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html[dir="rtl"] {
+    font-family: var(--font-arabic), "CairoArabicLocal", "LexendLocal", system-ui, sans-serif;
+  }
+
+  html[dir="ltr"] {
+    font-family: var(--font-lexend), "LexendLocal", system-ui, sans-serif;
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--nx-focus-ring);
+    outline-offset: 2px;
+  }
+}
+
+/* 4/8/12 Column Layout System with 1280px Max Width & 16/24/40px Gutters */
+.nx-container {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 16px;
+}
+
+@media (min-width: 768px) {
+  .nx-container {
+    padding-inline: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .nx-container {
+    padding-inline: 40px;
+  }
+}
+
+.nx-grid-12 {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .nx-grid-12 {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    gap: 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .nx-grid-12 {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 40px;
+  }
+}
+
+/* Fluid Typography System */
+.nx-display-xl {
+  font-size: clamp(2.25rem, 4.2vw + 0.9rem, 4rem);
+  line-height: 1.08;
+  letter-spacing: -0.024em;
+  font-weight: 600;
+}
+
+.nx-display-lg {
+  font-size: clamp(1.95rem, 3.2vw + 0.85rem, 3.25rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+
+.nx-h1 {
+  font-size: clamp(1.7rem, 2.4vw + 0.75rem, 2.65rem);
+  line-height: 1.16;
+  letter-spacing: -0.016em;
+  font-weight: 600;
+}
+
+.nx-h2 {
+  font-size: clamp(1.4rem, 1.8vw + 0.6rem, 2.05rem);
+  line-height: 1.24;
+  letter-spacing: -0.012em;
+  font-weight: 600;
+}
+
+.nx-h3 {
+  font-size: clamp(1.175rem, 1vw + 0.6rem, 1.45rem);
+  line-height: 1.32;
+  letter-spacing: -0.008em;
+  font-weight: 600;
+}
+
+.nx-lead {
+  font-size: clamp(1.0625rem, 0.45vw + 0.9rem, 1.25rem);
+  line-height: 1.65;
+  max-width: 68ch;
+}
+
+.nx-body {
+  font-size: clamp(0.975rem, 0.2vw + 0.92rem, 1.0625rem);
+  line-height: 1.7;
+  max-width: 68ch;
+}
+
+.nx-eyebrow {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Arabic Typographic Rules: Zero Decorative Tracking, Generous Line-Height */
+html[dir="rtl"] .nx-display-xl,
+html[dir="rtl"] .nx-display-lg,
+html[dir="rtl"] .nx-h1,
+html[dir="rtl"] .nx-h2,
+html[dir="rtl"] .nx-h3 {
+  letter-spacing: 0 !important;
+  line-height: 1.34;
+}
+
+html[dir="rtl"] .nx-lead,
+html[dir="rtl"] .nx-body {
+  letter-spacing: 0 !important;
+  line-height: 1.84;
+}
+
+html[dir="rtl"] .nx-eyebrow {
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  font-size: 0.85rem;
+}
+
+/* Bidirectional Isolation for Mixed-Script Labels, Emails, URLs, Phone Numbers */
+.ltr-inline {
+  direction: ltr;
+  unicode-bidi: isolate;
+  display: inline-block;
+}
+
+/* ThreeUI SylvaHero Container */
+.shader-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 680px;
+  background-color: #080808;
+  overflow: hidden;
+}
+
+.shader-frame .threeui-background,
+.shader-frame .landing-page-frame {
+  width: 100%;
+  height: 100%;
+  min-height: 680px;
+}
+
+/* Clean Architectural Surfaces (No Grid Squares) */
+.nx-grid-bg-dark {
+  background-color: var(--nx-bg-dark);
+  background-image: radial-gradient(
+    circle at 80% 20%,
+    rgba(0, 209, 180, 0.05) 0%,
+    transparent 60%
+  );
+}
+
+.nx-grid-bg-light {
+  background-color: var(--nx-bg-light);
+}
+
+/* Reduced Motion Treatment */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
